@@ -9,7 +9,15 @@ class MyHomePage extends StatelessWidget {
       BuildContext context,
       MaterialAccentColor color
       ) {
-    Navigator.pushNamed(context, './shades', arguments: color);
+    Navigator.pushNamed(context, '/shades', arguments: color);
+  }
+
+  //Navigation to the Color Slider
+  void navigateToColorSlider(
+      BuildContext context,
+      MaterialAccentColor color
+      ) {
+    Navigator.pushNamed(context, '/ColorSlider', arguments: color);
   }
 
   // void navigateToShadesPage(BuildContext context, MaterialAccentColor color) {
@@ -26,21 +34,29 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(title: Text(
           'Colors'),
       ),
-      body: ListView.builder(
-        itemCount: Colors.accents.length,
-        itemBuilder: (BuildContext context, int index)
-          {
-            return GestureDetector(
-                onTap: () {
-                  navigateToShadesPage(context, Colors.accents.elementAt(index));
+      body: Center(
+        child: ListView.builder(
+          itemCount: Colors.accents.length,
+          itemBuilder: (BuildContext context, int index)
+            {
+              return GestureDetector(
+                  onTap: () {
+                    navigateToShadesPageStatic(context, Colors.accents.elementAt(index));
+              },
+                child: ListItem(
+                  color: Colors.accents.elementAt(index),
+                ),
+              );
             },
-              child: ListItem(
-                color: Colors.accents.elementAt(index),
-              ),
-            );
-            return ListItem(color: Colors.accents.elementAt(index));
-          },
+        ),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            navigateToColorSlider(context, Colors.amberAccent);
+
+          },backgroundColor: Colors.redAccent,
+          child: const Icon(Icons.color_lens),
+        )
     );
   }
 }

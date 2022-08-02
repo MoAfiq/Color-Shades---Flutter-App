@@ -1,4 +1,4 @@
-# day7
+# Besquare Mobile Development Day 7
 
 A new Flutter project.
 
